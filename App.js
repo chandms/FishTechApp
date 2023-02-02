@@ -115,7 +115,7 @@ const App = () => {
           onValueChange={(sliderValue) => setSliderValue(sliderValue)}
         />
       </View>
-      <Button title="Stop Sound" onPress={() => {stopSound()}} />
+      <Button title="Stop Sound" onPress={() => {stopSound()}} style={{backgroundColor: 'red'}} />
    </SafeAreaView>
   )
    
