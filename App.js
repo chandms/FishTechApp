@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import { Image, View, ScrollView, Text, ImageBackground, StyleSheet, SafeAreaView, Button, Alert,} from 'react-native';
+import { Image, View, ScrollView, Dimensions, Text, ImageBackground, StyleSheet, SafeAreaView, Button, Alert} from 'react-native';
 import {Card , Title ,Paragraph } from 'react-native-paper';
 import { Audio } from 'expo-av';
+import Slider from '@react-native-community/slider';
 
-
-
+// based on the selected slider's value => change the sound
 const logo = {
   uri: 'https://reactnative.dev/img/tiny_logo.png',
   width: 64,
@@ -39,10 +39,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#ecf0f1',
     padding: 10,
   },
+  container_slider: {
+    flex: 1,
+    padding: 20,
+    justifyContent: 'center',
+    backgroundColor: '#ecf0f1',
+  },
  });
 
 const App = () => {
   const [sound, setSound] = React.useState();
+  const [sliderValue, setSliderValue] = useState(15);
+
+  
 
   async function playSound(sFile) {
     console.log('Loading Sound');
@@ -67,56 +76,44 @@ const App = () => {
       : undefined;
   }, [sound]);
 
+  async function stopSound(){
+    console.log("stopping sound");
+    sound.stopAsync();
+  }
+
+
+  React.useEffect(() => {
+        
+        console.log("current slider value", sliderValue);
+        if(sliderValue==20){
+          playSound(soundfiles.sound1);
+        }
+        else if(sliderValue==50){
+          playSound(soundfiles.sound2);
+        }
+        else if(sliderValue==80){
+          playSound(soundfiles.sound3);
+        }
+  }, [sliderValue]);
+
   return(
-    <SafeAreaView style={{flex :1, justifyContent: 'center', marginLeft: 5, marginTop: 50, marginBottom:20, marginRight: 10 }}>
-     <ScrollView>
-        <Card style={{ justifyContent: 'center', margin: 10 }}>
-           <ImageBackground source={require('./assets/background.png')} resizeMode="cover" style={styles.image}>
-           <Card.Content>
-                 <Title>Sound Sample 1</Title>
-           </Card.Content>
-           <Card.Content>
-           <Paragraph>30 bpm</Paragraph>
-           </Card.Content>
-           <Image source={require('./assets/fish.png')} />
-           <Button title="Play Sound" onPress={() => {playSound(soundfiles.sound1)}} />
-           </ImageBackground>
-        </Card>
-        <Card style={{ justifyContent: 'center', margin: 10 }}>
-           <ImageBackground source={require('./assets/background.png')} resizeMode="cover" style={styles.image}>
-           <Card.Content>
-                 <Title>Sound Sample 2</Title>
-           </Card.Content>
-           <Card.Content>
-           <Paragraph>40 bpm</Paragraph>
-           </Card.Content>
-           <Image source={require('./assets/fish.png')} />
-           <Button title="Play Sound" onPress={() => {playSound(soundfiles.sound2)}} />
-           </ImageBackground>
-        </Card>
-        <Card style={{ justifyContent: 'center', margin: 10 }}>
-           <ImageBackground source={require('./assets/background.png')} resizeMode="cover" style={styles.image}>
-           <Card.Content>
-                 <Title>Sound Sample 3</Title>
-           </Card.Content>
-           <Card.Content>
-           <Paragraph>60 bpm</Paragraph>
-           </Card.Content>
-           <Image source={require('./assets/fish.png')} />
-           <Button title="Play Sound" onPress={() => {playSound(soundfiles.sound3)}} />
-           </ImageBackground>
-        </Card>
-        <Card style={{ justifyContent: 'center', margin: 10 }}>
-           <ImageBackground source={require('./assets/background.png')} resizeMode="cover" style={styles.image}>
-           <Card.Content>
-                 <Title>Stop Sound</Title>
-           </Card.Content>
-           <Image source={require('./assets/fish.png')} />
-           <Button title="Stop Sound" onPress={() => {stopSound()}} 
-            color = "red"/>
-           </ImageBackground>
-        </Card>
-   </ScrollView>
+  <SafeAreaView style={{flex :1, justifyContent: 'center', marginLeft: 5, marginTop: 50, marginBottom:20, marginRight: 10 }}>
+   <View style={styles.container_slider}>
+        {/*Text to show slider value*/}
+        <Text style={{color: 'black'}}>Value of slider is : {sliderValue}</Text>
+
+        {/*Slider with max, min, step and initial value*/}
+        <Slider
+          maximumValue={100}
+          minimumValue={0}
+          minimumTrackTintColor="#307ecc"
+          maximumTrackTintColor="#000000"
+          step={1}
+          value={sliderValue}
+          onValueChange={(sliderValue) => setSliderValue(sliderValue)}
+        />
+      </View>
+      <Button title="Stop Sound" onPress={() => {stopSound()}} />
    </SafeAreaView>
   )
    
