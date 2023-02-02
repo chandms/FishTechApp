@@ -78,7 +78,9 @@ const App = () => {
 
   async function stopSound(){
     console.log("stopping sound");
-    sound.stopAsync();
+    if(sound){
+      sound.stopAsync();
+    }
   }
 
 
