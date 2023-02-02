@@ -53,6 +53,11 @@ const App = () => {
     await sound.playAsync();
   }
 
+  async function stopSound() { 
+    console.log('Stopping Sound'); 
+    sound.stopAsync(); 
+  } 
+
   React.useEffect(() => {
     return sound
       ? () => {
@@ -63,44 +68,54 @@ const App = () => {
   }, [sound]);
 
   return(
-  <SafeAreaView style={{flex :1, justifyContent: 'center', marginLeft: 5, marginTop: 50, marginBottom:20, marginRight: 10 }}>
-   <ScrollView>
-      <Card style={{ justifyContent: 'center', margin: 10 }}>
-         <ImageBackground source={require('./assets/background.png')} resizeMode="cover" style={styles.image}>
-         <Card.Content>
-               <Title>Sound Sample 1</Title>
-         </Card.Content>
-         <Card.Content>
-         <Paragraph>30 bpm</Paragraph>
-         </Card.Content>
-         <Image source={require('./assets/fish.png')} />
-         <Button title="Play Sound" onPress={() => {playSound(soundfiles.sound1)}} />
-         </ImageBackground>
-      </Card>
-      <Card style={{ justifyContent: 'center', margin: 10 }}>
-         <ImageBackground source={require('./assets/background.png')} resizeMode="cover" style={styles.image}>
-         <Card.Content>
-               <Title>Sound Sample 2</Title>
-         </Card.Content>
-         <Card.Content>
-         <Paragraph>40 bpm</Paragraph>
-         </Card.Content>
-         <Image source={require('./assets/fish.png')} />
-         <Button title="Play Sound" onPress={() => {playSound(soundfiles.sound2)}} />
-         </ImageBackground>
-      </Card>
-      <Card style={{ justifyContent: 'center', margin: 10 }}>
-         <ImageBackground source={require('./assets/background.png')} resizeMode="cover" style={styles.image}>
-         <Card.Content>
-               <Title>Sound Sample 3</Title>
-         </Card.Content>
-         <Card.Content>
-         <Paragraph>60 bpm</Paragraph>
-         </Card.Content>
-         <Image source={require('./assets/fish.png')} />
-         <Button title="Play Sound" onPress={() => {playSound(soundfiles.sound3)}} />
-         </ImageBackground>
-      </Card>
+    <SafeAreaView style={{flex :1, justifyContent: 'center', marginLeft: 5, marginTop: 50, marginBottom:20, marginRight: 10 }}>
+     <ScrollView>
+        <Card style={{ justifyContent: 'center', margin: 10 }}>
+           <ImageBackground source={require('./assets/background.png')} resizeMode="cover" style={styles.image}>
+           <Card.Content>
+                 <Title>Sound Sample 1</Title>
+           </Card.Content>
+           <Card.Content>
+           <Paragraph>30 bpm</Paragraph>
+           </Card.Content>
+           <Image source={require('./assets/fish.png')} />
+           <Button title="Play Sound" onPress={() => {playSound(soundfiles.sound1)}} />
+           </ImageBackground>
+        </Card>
+        <Card style={{ justifyContent: 'center', margin: 10 }}>
+           <ImageBackground source={require('./assets/background.png')} resizeMode="cover" style={styles.image}>
+           <Card.Content>
+                 <Title>Sound Sample 2</Title>
+           </Card.Content>
+           <Card.Content>
+           <Paragraph>40 bpm</Paragraph>
+           </Card.Content>
+           <Image source={require('./assets/fish.png')} />
+           <Button title="Play Sound" onPress={() => {playSound(soundfiles.sound2)}} />
+           </ImageBackground>
+        </Card>
+        <Card style={{ justifyContent: 'center', margin: 10 }}>
+           <ImageBackground source={require('./assets/background.png')} resizeMode="cover" style={styles.image}>
+           <Card.Content>
+                 <Title>Sound Sample 3</Title>
+           </Card.Content>
+           <Card.Content>
+           <Paragraph>60 bpm</Paragraph>
+           </Card.Content>
+           <Image source={require('./assets/fish.png')} />
+           <Button title="Play Sound" onPress={() => {playSound(soundfiles.sound3)}} />
+           </ImageBackground>
+        </Card>
+        <Card style={{ justifyContent: 'center', margin: 10 }}>
+           <ImageBackground source={require('./assets/background.png')} resizeMode="cover" style={styles.image}>
+           <Card.Content>
+                 <Title>Stop Sound</Title>
+           </Card.Content>
+           <Image source={require('./assets/fish.png')} />
+           <Button title="Stop Sound" onPress={() => {stopSound()}} 
+            color = "red"/>
+           </ImageBackground>
+        </Card>
    </ScrollView>
    </SafeAreaView>
   )
@@ -108,4 +123,3 @@ const App = () => {
 };
 
 export default App;
-
