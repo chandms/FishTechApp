@@ -4,6 +4,8 @@ import {Card , Title ,Paragraph } from 'react-native-paper';
 import { Audio } from 'expo-av';
 import Slider from '@react-native-community/slider';
 
+import Welcome from './Welcome';
+
 // based on the selected slider's value => change the sound
 const logo = {
   uri: 'https://reactnative.dev/img/tiny_logo.png',
@@ -103,7 +105,7 @@ const App = () => {
    <View style={styles.container_slider}>
         {/*Text to show slider value*/}
         <Text style={{color: 'black'}}>Value of slider is : {sliderValue}</Text>
-
+        <Welcome></Welcome>
         {/*Slider with max, min, step and initial value*/}
         <Slider
           maximumValue={100}
