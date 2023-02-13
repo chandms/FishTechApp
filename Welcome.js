@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {Image, View, ScrollView, Dimensions, Text, ImageBackground, StyleSheet, SafeAreaView, Button, Alert} from 'react-native';
+import {Animated, Platform, Image, View, ScrollView, Dimensions, Text, ImageBackground, StyleSheet, SafeAreaView, Button, Alert} from 'react-native';
 import {Card} from 'react-native-elements';
-
 
 const styles = StyleSheet.create({
   container: {
@@ -15,8 +14,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 270,
     height: 270,
-    marginLeft: 'auto', marginTop: 'auto', marginBottom: 'auto', marginRight: 'auto'
+    marginLeft: 'auto', marginTop: 'auto', marginBottom: 'auto', marginRight: 'auto',
   },
+    welcomeText1: {
+      fontSize: 30,
+      marginLeft: 'auto', marginTop: 'auto', marginBottom: 'auto', marginRight: 'auto',
+      justifyContent: 'center', textAlign: 'center',
+      paddingTop: 100
+    },
+    welcomeText2: {
+      fontSize: 20,
+      marginLeft: 'auto', marginTop: 'auto', marginBottom: 'auto', marginRight: 'auto',
+      justifyContent: 'center', textAlign: 'center',
+      padding: 10
+    }
 });
 
 const DisplayAnImage = () => {
@@ -26,7 +37,15 @@ const DisplayAnImage = () => {
         style={styles.logo}
         source={require('./assets/logo_fishtech.jpeg')}
       />
-      
+      <Text style={styles.welcomeText1}>
+        Welcome to Thump'em Up App!
+      </Text>
+      <Text style={styles.welcomeText2}>
+        Fishing could have never been easier.
+      </Text>
+      <Text style={styles.welcomeText2}>
+        Use the mobile thumper and watch fish come to you.
+      </Text>
     </View>
   );
 };

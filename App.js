@@ -102,9 +102,9 @@ const App = () => {
 
   return(
   <SafeAreaView style={{flex :1, justifyContent: 'center', marginLeft: 5, marginTop: 50, marginBottom:20, marginRight: 10 }}>
-   <View style={styles.container_slider}>
+      {/* <View style={styles.container_slider}>
         <Welcome></Welcome>
-        {/*Slider with max, min, step and initial value*/}
+        {Slider with max, min, step and initial value}
         <Slider
           maximumValue={100}
           minimumValue={0}
@@ -114,10 +114,12 @@ const App = () => {
           value={sliderValue}
           onValueChange={(sliderValue) => setSliderValue(sliderValue)}
         />
-         {/*Text to show slider value*/}
+         {/*Text to show slider value}
         <Text style={{color: 'black'}}>Value of slider is : {sliderValue}</Text>
-      </View>
-      <Button title="Stop Sound" onPress={() => {stopSound()}} style={{backgroundColor: 'red'}} />
+      </View> 
+     
+      <Button title="Stop Sound" onPress={() => {stopSound()}} style={{backgroundColor: 'red'}} />*/}
+      <Welcome></Welcome>
    </SafeAreaView>
   )
    
