@@ -100,10 +100,10 @@ const Slider_Component = ({navigation, route}) => {
           playSound(soundfiles.sound1);
         }
         else if(sliderValue==50){
-          playSound(soundfiles.sound2);
+          playSound(soundfiles.sound3);
         }
         else if(sliderValue==80){
-          playSound(soundfiles.sound3);
+          playSound(soundfiles.sound2);
         }
   }, [sliderValue]);
 

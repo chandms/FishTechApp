@@ -65,26 +65,3 @@ export default DisplayAnImage;
 
 
 
-
-/*const styles = StyleSheet.create({
-  logo_card: {
-    justifyContent: 'center',
-    width: 300,
-    height:500
-  },
-});
-
-export default function Welcome(){
-  
-  return(
-      <View>
-        <Card containerStyle={styles.logo_card}>
-          <Card.Image> 
-            <Image source={require( './assets/logo_fishtech.jpeg')}
-            containerStyle={{width:275, height:150}}
-            />
-          </Card.Image>
-        </Card>
-      </View>
-  );
-}*/
