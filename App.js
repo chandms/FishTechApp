@@ -16,7 +16,7 @@ const MyStack = () => {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{title: 'Welcome'}}
+          options={{title: ''}}
         />
         <Stack.Screen name="Slider" component={Slider_Component} />
       </Stack.Navigator>
@@ -28,12 +28,15 @@ const HomeScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.safe_are_style}>
     <Welcome/>
-    <Button
-      title="Slider View"
-      onPress={() =>
+    <Card style = {{marginTop: 50}}>
+
+      <Button
+        title="Slider View"
+        onPress={() =>
         navigation.navigate('Slider')
-      }
-    />
+        }
+      />
+    </Card>
     </SafeAreaView>
   );
 };
@@ -62,7 +65,7 @@ const styles = StyleSheet.create({
     flex :1, 
     justifyContent: 'center', 
     marginLeft: 5, 
-    marginTop: 50, 
+    marginTop: 20, 
     marginBottom:20, 
     marginRight: 10
   }
@@ -132,8 +135,10 @@ const Slider_Component = ({navigation, route}) => {
         onValueChange={(sliderValue) => setSliderValue(sliderValue)}
       />
     </View>
+    <Card>
+      <Button title="Stop Sound" onPress={() => {stopSound()}} style={{backgroundColor: 'red'}} />
+    </Card>
     
-    <Button title="Stop Sound" onPress={() => {stopSound()}} style={{backgroundColor: 'red'}} />
  </SafeAreaView>
 
 );

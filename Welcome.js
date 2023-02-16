@@ -4,7 +4,7 @@ import {Card} from 'react-native-elements';
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 100,
+    paddingBottom: 10
   },
   tinyLogo: {
     width: 50,
@@ -20,13 +20,13 @@ const styles = StyleSheet.create({
       fontSize: 30,
       marginLeft: 'auto', marginTop: 'auto', marginBottom: 'auto', marginRight: 'auto',
       justifyContent: 'center', textAlign: 'center',
-      paddingTop: 100
+      fontStyle: 'bold'
     },
     welcomeText2: {
       fontSize: 20,
       marginLeft: 'auto', marginTop: 'auto', marginBottom: 'auto', marginRight: 'auto',
       justifyContent: 'center', textAlign: 'center',
-      padding: 10
+      paddingTop: 10
     }
 });
 
@@ -38,13 +38,20 @@ const DisplayAnImage = () => {
         source={require('./assets/logo_fishtech.jpeg')}
       />
       <Text style={styles.welcomeText1}>
-        Welcome to Thump'em Up App!
+        {'\n'}
+        {"Welcome to"}
+        {'\n'}
+        {"Thump'em Up App!"}
       </Text>
       <Text style={styles.welcomeText2}>
+      {'\n'}
         Fishing could have never been easier.
+        {'\n'}
       </Text>
       <Text style={styles.welcomeText2}>
+
         Use the mobile thumper and watch fish come to you.
+        {'\n'}
       </Text>
     </View>
   );
