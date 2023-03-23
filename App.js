@@ -16,7 +16,7 @@ const MyStack = () => {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{title: ''}}
+          options={{title: 'Welcome'}}
         />
         <Stack.Screen name="Slider" component={Slider_Component} />
       </Stack.Navigator>
@@ -28,15 +28,12 @@ const HomeScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.safe_are_style}>
     <Welcome/>
-    <Card style = {{marginTop: 50}}>
-
-      <Button
-        title="Slider View"
-        onPress={() =>
+    <Button
+      title="Slider View"
+      onPress={() =>
         navigation.navigate('Slider')
-        }
-      />
-    </Card>
+      }
+    />
     </SafeAreaView>
   );
 };
@@ -49,10 +46,20 @@ const logo = {
 };
 
 const soundfiles = {
-  sound1: require('./assets/s1.m4a'),
-  sound2: require('./assets/s2.m4a'),
-  sound3: require('./assets/s3.m4a'),
-};
+    sound1: require('./assets/s1.m4a'),
+    sound2: require('./assets/s2.m4a'),
+    sound3: require('./assets/s3.m4a'),
+    sound30: require('./assets/sound/30bpm.mp3'),
+    sound40: require('./assets/sound/40bpm.mp3'),
+    sound50: require('./assets/sound/50bpm.mp3'),
+    sound60: require('./assets/sound/60bpm.mp3'),
+    sound70: require('./assets/sound/70bpm.mp3'),
+    sound80: require('./assets/sound/80bpm.mp3'),
+    sound90: require('./assets/sound/90bpm.mp3'),
+    sound100: require('./assets/sound/100bpm.mp3'),
+    soundmax: require('./assets/sound/maxbpm.mp3'),
+  
+  };
 
 const styles = StyleSheet.create({
   container_slider: {
@@ -65,7 +72,7 @@ const styles = StyleSheet.create({
     flex :1, 
     justifyContent: 'center', 
     marginLeft: 5, 
-    marginTop: 20, 
+    marginTop: 50, 
     marginBottom:20, 
     marginRight: 10
   }
@@ -74,19 +81,20 @@ const styles = StyleSheet.create({
 const Slider_Component = ({navigation, route}) => {
   const [sound, setSound] = React.useState();
   const [sliderValue, setSliderValue] = useState(15);
+  const [fileSelected, setFileSelected] = React.useState('');
 
   async function playSound(sFile) {
-    console.log('Loading Sound');
+    console.log('Playing Sound '+ sFile);
     const { sound } = await Audio.Sound.createAsync( sFile, { shouldPlay: true, isLooping: true });
     setSound(sound);
+    setFileSelected(sFile);
 
-    console.log('Playing Sound');
     await sound.playAsync();
 
   }
 
   async function stopSound(){
-    console.log("stopping sound");
+    console.log("stopping sound "+fileSelected);
     if(sound){
       sound.stopAsync();
     }
@@ -95,23 +103,38 @@ const Slider_Component = ({navigation, route}) => {
 
   React.useEffect(() => {
         
-        console.log("current slider value", sliderValue);
-        if(sliderValue==20){
-          playSound(soundfiles.sound1);
-        }
-        else if(sliderValue==50){
-          playSound(soundfiles.sound3);
-        }
-        else if(sliderValue==80){
-          playSound(soundfiles.sound2);
-        }
-  }, [sliderValue]);
+    // console.log("current slider value", sliderValue);
+    if(sliderValue==30){
+      playSound(soundfiles.sound30);
+    }
+    else if(sliderValue==40){
+      playSound(soundfiles.sound40);
+    }
+    else if(sliderValue==50){
+      playSound(soundfiles.sound50);
+    }
+    else if(sliderValue==60){
+      playSound(soundfiles.sound60);
+    }
+    else if(sliderValue==70){
+      playSound(soundfiles.sound70);
+    }
+    else if(sliderValue==80){
+      playSound(soundfiles.sound80);
+    }
+    else if(sliderValue==90){
+      playSound(soundfiles.sound90);
+    }
+    else if(sliderValue==100){
+      playSound(soundfiles.sound100);
+    }
+}, [sliderValue]);
 
   
   React.useEffect(() => {
     return sound
       ? () => {
-          console.log('Unloading Sound');
+          console.log('Unloading Sound '+fileSelected);
           sound.unloadAsync();
         }
       : undefined;
@@ -135,10 +158,8 @@ const Slider_Component = ({navigation, route}) => {
         onValueChange={(sliderValue) => setSliderValue(sliderValue)}
       />
     </View>
-    <Card>
-      <Button title="Stop Sound" onPress={() => {stopSound()}} style={{backgroundColor: 'red'}} />
-    </Card>
     
+    <Button title="Stop Sound" onPress={() => {stopSound()}} style={{backgroundColor: 'red'}} />
  </SafeAreaView>
 
 );
