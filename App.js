@@ -131,36 +131,6 @@ const Slider_Component = ({navigation, route}) => {
     }
   }
 
-
-//   React.useEffect(() => {
-        
-//     // console.log("current slider value", sliderValue);
-//     if(sliderValue==30){
-//       playSound(soundfiles.sound30);
-//     }
-//     else if(sliderValue==40){
-//       playSound(soundfiles.sound40);
-//     }
-//     else if(sliderValue==50){
-//       playSound(soundfiles.sound50);
-//     }
-//     else if(sliderValue==60){
-//       playSound(soundfiles.sound60);
-//     }
-//     else if(sliderValue==70){
-//       playSound(soundfiles.sound70);
-//     }
-//     else if(sliderValue==80){
-//       playSound(soundfiles.sound80);
-//     }
-//     else if(sliderValue==90){
-//       playSound(soundfiles.sound90);
-//     }
-//     else if(sliderValue==100){
-//       playSound(soundfiles.sound100);
-//     }
-// }, [sliderValue]);
-
   
   React.useEffect(() => {
     return sound
