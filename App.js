@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Image, View, ScrollView, Dimensions, Text, ImageBackground, StyleSheet, SafeAreaView, Button, Alert} from 'react-native';
+import { Image, View, ScrollView, Dimensions, Text, ImageBackground, StyleSheet,  SafeAreaView, Button, Alert, Pressable } from 'react-native';
 import {Card , Title ,Paragraph } from 'react-native-paper';
 import { Audio } from 'expo-av';
 import Slider from '@react-native-community/slider';
@@ -8,6 +8,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Welcome from './Welcome';
 
 const Stack = createNativeStackNavigator();
+
+
+
 
 const MyStack = () => {
   return (
@@ -29,7 +32,7 @@ const HomeScreen = ({navigation}) => {
     <SafeAreaView style={styles.safe_are_style}>
     <Welcome/>
     <Button
-      title="Slider View"
+      title="Please select your fishing conditions"
       onPress={() =>
         navigation.navigate('Slider')
       }
@@ -49,15 +52,15 @@ const soundfiles = {
     sound1: require('./assets/s1.m4a'),
     sound2: require('./assets/s2.m4a'),
     sound3: require('./assets/s3.m4a'),
-    sound30: require('./assets/sound/30bpm.mp3'),
-    sound40: require('./assets/sound/40bpm.mp3'),
-    sound50: require('./assets/sound/50bpm.mp3'),
-    sound60: require('./assets/sound/60bpm.mp3'),
-    sound70: require('./assets/sound/70bpm.mp3'),
-    sound80: require('./assets/sound/80bpm.mp3'),
-    sound90: require('./assets/sound/90bpm.mp3'),
-    sound100: require('./assets/sound/100bpm.mp3'),
-    soundmax: require('./assets/sound/maxbpm.mp3'),
+    sound30: require('./assets/30bpm.m4a'),
+    sound40: require('./assets/40bpm.m4a'),
+    sound50: require('./assets/50bpm.m4a'),
+    sound60: require('./assets/60bpm.m4a'),
+    sound70: require('./assets/70bpm.m4a'),
+    sound80: require('./assets/80bpm.m4a'),
+    sound90: require('./assets/90bpm.m4a'),
+    sound100: require('./assets/100bpm.m4a'),
+    soundmax: require('./assets/maxbpm.m4a'),
   
   };
 
@@ -75,7 +78,25 @@ const styles = StyleSheet.create({
     marginTop: 50, 
     marginBottom:20, 
     marginRight: 10
-  }
+  },
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    marginTop: 10,
+    elevation: 3,
+    backgroundColor: '#7b68ee',
+    height: 100,
+  },
+  text: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'white',
+  },
  });
 
 const Slider_Component = ({navigation, route}) => {
@@ -83,13 +104,25 @@ const Slider_Component = ({navigation, route}) => {
   const [sliderValue, setSliderValue] = useState(15);
   const [fileSelected, setFileSelected] = React.useState('');
 
+  function ButtonsOpt(props) {
+    const { onPress, title = 'Save', sound_file } = props;
+    return (
+      <Pressable style={styles.button} onPress={()=>playSound(sound_file)}>
+        <Text style={styles.text}>{title}</Text>
+        
+      </Pressable>
+    );
+  }
+
   async function playSound(sFile) {
-    console.log('Playing Sound '+ sFile);
+
+    
     const { sound } = await Audio.Sound.createAsync( sFile, { shouldPlay: true, isLooping: true });
     setSound(sound);
     setFileSelected(sFile);
 
     await sound.playAsync();
+    console.log('Playing Sound '+ sFile);
 
   }
 
@@ -99,36 +132,6 @@ const Slider_Component = ({navigation, route}) => {
       sound.stopAsync();
     }
   }
-
-
-  React.useEffect(() => {
-        
-    // console.log("current slider value", sliderValue);
-    if(sliderValue==30){
-      playSound(soundfiles.sound30);
-    }
-    else if(sliderValue==40){
-      playSound(soundfiles.sound40);
-    }
-    else if(sliderValue==50){
-      playSound(soundfiles.sound50);
-    }
-    else if(sliderValue==60){
-      playSound(soundfiles.sound60);
-    }
-    else if(sliderValue==70){
-      playSound(soundfiles.sound70);
-    }
-    else if(sliderValue==80){
-      playSound(soundfiles.sound80);
-    }
-    else if(sliderValue==90){
-      playSound(soundfiles.sound90);
-    }
-    else if(sliderValue==100){
-      playSound(soundfiles.sound100);
-    }
-}, [sliderValue]);
 
   
   React.useEffect(() => {
@@ -143,23 +146,19 @@ const Slider_Component = ({navigation, route}) => {
   return(
     
     <SafeAreaView style={styles.safe_are_style}>
+      <ScrollView>
  <View style={styles.container_slider}>
-      {/*Text to show slider value*/}
-      <Text style={{color: 'black'}}>Value of slider is : {sliderValue}</Text>
-      
-      {/*Slider with max, min, step and initial value*/}
-      <Slider
-        maximumValue={100}
-        minimumValue={0}
-        minimumTrackTintColor="#307ecc"
-        maximumTrackTintColor="#000000"
-        step={1}
-        value={sliderValue}
-        onValueChange={(sliderValue) => setSliderValue(sliderValue)}
-      />
+    
+      <ButtonsOpt title="Water Temperature <50     Water Depth < 30" sound_file={soundfiles.sound1}/>
+      <ButtonsOpt title="Water Depth < 30'" sound_file={soundfiles.sound30}/>
+      <ButtonsOpt title="Water Depth 30' - 40'" sound_file={soundfiles.sound40}/>
+      <ButtonsOpt title="Water Depth 40' - 50'" sound_file={soundfiles.sound50}/>
+      <ButtonsOpt title="Water Depth 50' - 60'" sound_file={soundfiles.sound60}/>
+      <ButtonsOpt title="Water Depth > 60'" sound_file={soundfiles.sound70}/>
     </View>
     
     <Button title="Stop Sound" onPress={() => {stopSound()}} style={{backgroundColor: 'red'}} />
+    </ScrollView>
  </SafeAreaView>
 
 );
