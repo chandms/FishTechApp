@@ -52,15 +52,15 @@ const soundfiles = {
     sound1: require('./assets/s1.m4a'),
     sound2: require('./assets/s2.m4a'),
     sound3: require('./assets/s3.m4a'),
-    sound30: require('./assets/sound/30bpm.mp3'),
-    sound40: require('./assets/sound/40bpm.mp3'),
-    sound50: require('./assets/sound/50bpm.mp3'),
-    sound60: require('./assets/sound/60bpm.mp3'),
-    sound70: require('./assets/sound/70bpm.mp3'),
-    sound80: require('./assets/sound/80bpm.mp3'),
-    sound90: require('./assets/sound/90bpm.mp3'),
-    sound100: require('./assets/sound/100bpm.mp3'),
-    soundmax: require('./assets/sound/maxbpm.mp3'),
+    sound30: require('./assets/30bpm.m4a'),
+    sound40: require('./assets/40bpm.m4a'),
+    sound50: require('./assets/50bpm.m4a'),
+    sound60: require('./assets/60bpm.m4a'),
+    sound70: require('./assets/70bpm.m4a'),
+    sound80: require('./assets/80bpm.m4a'),
+    sound90: require('./assets/90bpm.m4a'),
+    sound100: require('./assets/100bpm.m4a'),
+    soundmax: require('./assets/maxbpm.m4a'),
   
   };
 
@@ -115,12 +115,14 @@ const Slider_Component = ({navigation, route}) => {
   }
 
   async function playSound(sFile) {
-    console.log('Playing Sound '+ sFile);
+
+    
     const { sound } = await Audio.Sound.createAsync( sFile, { shouldPlay: true, isLooping: true });
     setSound(sound);
     setFileSelected(sFile);
 
     await sound.playAsync();
+    console.log('Playing Sound '+ sFile);
 
   }
 
