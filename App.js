@@ -100,8 +100,17 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     marginTop: 10,
     elevation: 3,
-    backgroundColor: '#7b68ee',
     height: 100,
+  },
+  stop_button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    marginTop: 10,
+    elevation: 3,
+    height: 40,
   },
   text: {
     fontSize: 16,
@@ -118,9 +127,10 @@ const Slider_Component = ({navigation, route}) => {
   const [fileSelected, setFileSelected] = React.useState('');
 
   function ButtonsOpt(props) {
-    const { onPress, title = 'Save', sound_file } = props;
+    const { onPress, title = 'Save', sound_file, button_color_style } = props;
+  
     return (
-      <Pressable style={styles.button} onPress={()=>playSound(sound_file)}>
+      <Pressable style={[styles.button, {backgroundColor:button_color_style}]} onPress={()=>playSound(sound_file)}>
         <Text style={styles.text}>{title}</Text>
         
       </Pressable>
@@ -161,21 +171,19 @@ const Slider_Component = ({navigation, route}) => {
     <SafeAreaView style={styles.safe_are_style}>
       <ScrollView>
       <ImageBackground source={image} resizeMode="cover" style={styles.background_image}>
- <View style={styles.container_slider}>
- 
-
-    
-      <ButtonsOpt title="Water Temperature <50     Water Depth < 30" sound_file={soundfiles.sound1}/>
-      <ButtonsOpt title="Water Depth < 30'" sound_file={soundfiles.sound30}/>
-      <ButtonsOpt title="Water Depth 30' - 40'" sound_file={soundfiles.sound40}/>
-      <ButtonsOpt title="Water Depth 40' - 50'" sound_file={soundfiles.sound50}/>
-      <ButtonsOpt title="Water Depth 50' - 60'" sound_file={soundfiles.sound60}/>
-      <ButtonsOpt title="Water Depth > 60'" sound_file={soundfiles.sound70}/>
-      
-    </View>
-    
-    <Button title="Stop Sound" onPress={() => {stopSound()}} style={{backgroundColor: 'red'}} />
-    </ImageBackground>
+        <View style={styles.container_slider}>
+              <ButtonsOpt title="Water Temperature <50     Water Depth < 30"sound_file={soundfiles.sound1} button_color_style='#82bfee' />
+              <ButtonsOpt title="Water Depth < 30'" sound_file={soundfiles.sound30} button_color_style='#61a1e9'/>
+              <ButtonsOpt title="Water Depth 30' - 40'" sound_file={soundfiles.sound40} button_color_style='#2b83c6'/>
+              <ButtonsOpt title="Water Depth 40' - 50'" sound_file={soundfiles.sound50} button_color_style='#1c6ab5'/>
+              <ButtonsOpt title="Water Depth 50' - 60'" sound_file={soundfiles.sound60} button_color_style='#113e9c'/>
+              <ButtonsOpt title="Water Depth > 60'" sound_file={soundfiles.sound70} button_color_style='#0b4071'/>
+          </View>
+  
+      <Pressable style={[styles.stop_button, {backgroundColor:'red'}]}  onPress={() => {stopSound()}}>
+        <Text style={styles.text}>{"Stop Sound"}</Text>
+      </Pressable>
+      </ImageBackground>
     </ScrollView>
 
  </SafeAreaView>
