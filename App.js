@@ -10,6 +10,8 @@ import Welcome from './Welcome';
 const Stack = createNativeStackNavigator();
 
 
+const image = require('./assets/water.jpg');
+
 
 
 const MyStack = () => {
@@ -21,6 +23,7 @@ const MyStack = () => {
           component={HomeScreen}
           options={{title: 'Welcome'}}
         />
+
         <Stack.Screen name="Slider" component={Slider_Component} />
       </Stack.Navigator>
     </NavigationContainer>
@@ -31,12 +34,18 @@ const HomeScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.safe_are_style}>
     <Welcome/>
+ 
+    
+ 
+
+
     <Button
       title="Please select your fishing conditions"
       onPress={() =>
         navigation.navigate('Slider')
       }
     />
+ 
     </SafeAreaView>
   );
 };
@@ -65,17 +74,21 @@ const soundfiles = {
   };
 
 const styles = StyleSheet.create({
+  background_image: {
+    flex: 1,
+    justifyContent: 'center',
+  },
   container_slider: {
     flex: 1,
     padding: 20,
     justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
+    
   },
   safe_are_style :{
     flex :1, 
     justifyContent: 'center', 
     marginLeft: 5, 
-    marginTop: 50, 
+    marginTop: 10, 
     marginBottom:20, 
     marginRight: 10
   },
@@ -147,7 +160,10 @@ const Slider_Component = ({navigation, route}) => {
     
     <SafeAreaView style={styles.safe_are_style}>
       <ScrollView>
+      <ImageBackground source={image} resizeMode="cover" style={styles.background_image}>
  <View style={styles.container_slider}>
+ 
+
     
       <ButtonsOpt title="Water Temperature <50     Water Depth < 30" sound_file={soundfiles.sound1}/>
       <ButtonsOpt title="Water Depth < 30'" sound_file={soundfiles.sound30}/>
@@ -155,10 +171,13 @@ const Slider_Component = ({navigation, route}) => {
       <ButtonsOpt title="Water Depth 40' - 50'" sound_file={soundfiles.sound50}/>
       <ButtonsOpt title="Water Depth 50' - 60'" sound_file={soundfiles.sound60}/>
       <ButtonsOpt title="Water Depth > 60'" sound_file={soundfiles.sound70}/>
+      
     </View>
     
     <Button title="Stop Sound" onPress={() => {stopSound()}} style={{backgroundColor: 'red'}} />
+    </ImageBackground>
     </ScrollView>
+
  </SafeAreaView>
 
 );
