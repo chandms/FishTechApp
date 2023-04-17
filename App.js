@@ -12,23 +12,6 @@ const Stack = createNativeStackNavigator();
 
 const image = require('./assets/water.jpg');
 
-const stylesBG = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  image: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  text: {
-    color: 'white',
-    fontSize: 42,
-    lineHeight: 84,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    backgroundColor: '#000000c0',
-  },
-});
 
 
 const MyStack = () => {
@@ -91,6 +74,10 @@ const soundfiles = {
   };
 
 const styles = StyleSheet.create({
+  background_image: {
+    flex: 1,
+    justifyContent: 'center',
+  },
   container_slider: {
     flex: 1,
     padding: 20,
@@ -173,7 +160,7 @@ const Slider_Component = ({navigation, route}) => {
     
     <SafeAreaView style={styles.safe_are_style}>
       <ScrollView>
-      <ImageBackground source={image} resizeMode="cover" style={stylesBG.image}>
+      <ImageBackground source={image} resizeMode="cover" style={styles.background_image}>
  <View style={styles.container_slider}>
  
 
